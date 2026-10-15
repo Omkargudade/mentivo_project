@@ -1,0 +1,91 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+
+brevo:
+  api-key: ${BREVO_API_KEY:}
+  from-email: ${BREVO_FROM_EMAIL:${spring.mail.username:support@mentivo.com}}
+  from-name: ${BREVO_FROM_NAME:Mentivo}
+
+spring:
+  application:
+    name: mentivo-backend
+
+  mail:
+    host: ${SPRING_MAIL_HOST:${BREVO_SMTP_HOST:smtp-relay.brevo.com}}
+    port: ${SPRING_MAIL_PORT:${BREVO_SMTP_PORT:587}}
+    username: ${SPRING_MAIL_USERNAME:${BREVO_SMTP_USER:}}
+    password: ${SPRING_MAIL_PASSWORD:${BREVO_SMTP_KEY:}}
+    properties:
+      mail:
+        smtp:
+          auth: ${SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE:true}
+            required: false
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/mentivo_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQLDialect
+
+app:
+  frontend-url: ${APP_FRONTEND_URL:http://localhost:5173}
+  jwt:
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    expiration-ms: 86400000 # 24 hours
+    refresh-expiration-ms: 604800000 # 7 days
+  platform:
+    commission-percent: 20.0
+    currency: INR
+  razorpay:
+    key-id: rzp_test_mentivo123
+    key-secret: test_secret_mentivo456
+  upload:
+    dir: uploads
+    max-file-size: 5242880 # 5MB
+    allowed-types:
+      - image/jpeg
+      - image/png
+      - image/webp
+
+features:
+  messaging: true
+  video-calling: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    root: INFO
+    com.mentivo: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: WARN

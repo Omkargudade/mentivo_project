@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-primary: #4f46e5;
+    --brand-primary-hover: #4338ca;
+    --brand-secondary: #0ea5e9;
+    --brand-accent: #10b981;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased min-h-screen font-sans selection:bg-indigo-100 selection:text-indigo-900;
+  }
+}
+
+/* Custom glassmorphism and subtle elevation */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

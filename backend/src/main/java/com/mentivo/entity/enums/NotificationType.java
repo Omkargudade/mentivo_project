@@ -1,0 +1,14 @@
+package com.mentivo.entity.enums;
+
+public enum NotificationType {
+    CONNECTION_REQUEST,
+    CONNECTION_ACCEPTED,
+    NEW_MESSAGE,
+    BOOKING_CREATED,
+    BOOKING_ACCEPTED,
+    PAYMENT_SUCCESSFUL,
+    SESSION_REMINDER,
+    SESSION_COMPLETED,
+    NEW_REVIEW,
+    OFFLINE_CONTACT_REQUEST
+}
